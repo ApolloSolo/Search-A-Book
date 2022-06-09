@@ -48,13 +48,13 @@ const resolvers = {
     },
     addBook: async (
       parent,
-      { userId, description, bookId, image, link, title },
+      { userId, description, bookId, image, title },
       context
     ) => {
       if (context.user) {
         const updateBooks = await User.findOneAndUpdate(
           { _id: userId },
-          { $push: { books: { description, bookId, image, link, title } } },
+          { $push: { books: { description, bookId, image, title } } },
           { new: true }
         );
         return updateBooks;
